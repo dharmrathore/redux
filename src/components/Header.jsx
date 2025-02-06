@@ -11,7 +11,7 @@ const Header = ({logout, cartCount}) => {
                     <li className='nav-item'><Link className='nav-link' to="/blog" >Blog</Link></li>
                     <li className='nav-item'><Link className='nav-link' to="/contact" >Contact</Link></li>
                 </ul>
-                <button className="btn btn-danger" onClick={logout}>Logout</button>
+                <button className="btn btn-danger" onClick={()=>{ window.location.replace("/");logout()}}>Logout</button>
                 <span className='badge bg-primary'>Card Item {cartCount} </span>
             </nav>
         </>

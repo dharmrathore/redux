@@ -61,14 +61,14 @@ const ProductCard = () => {
                                     {product.inStock ? "In Stock" : "Out of Stock"}
                                 </span>
                                 <h5 className="card-title">{product.name}</h5>
-                                <p className="card-text">{product.description}</p>
+                              
                                 <h6 className="text-danger">{product.storage} / <strong className='text-success'>{product.color} </strong> </h6>
                                 <h6 className="text-danger">{product.price} </h6>
-                                
+                                <p className="card-text">{product.description}</p>
                             </div>
                             <div className="card-footer justify-content-between d-flex">
                                 <button className="btn btn-primary" disabled={!product.inStock} onClick={() => dispatch(addToCard(product))}>Add to Cart</button>
-                                <button className="btn btn-primary"  onClick={() => dispatch(removeToCard(product))}>Remove to Cart</button>
+                                <button className="btn btn-danger"  onClick={() => dispatch(removeToCard(product))}>Remove to Cart</button>
                             </div>
                         </div>
                     </div>

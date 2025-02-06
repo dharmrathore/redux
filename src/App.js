@@ -22,7 +22,7 @@ function AppLayout(){
 	const dispatch = useDispatch();
 	const {isAuthenticated, user} = useSelector(state => state.auth);
 	const cartItems = useSelector(state => state.product.cardData);
-
+console.log(cartItems,"=-09876543234567890-=");
 	if (!isAuthenticated) {
 		return (
 		  <>

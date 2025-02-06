@@ -17,7 +17,7 @@ const  productReducer = (state = initialStateProduct, action) =>{
             console.log("Removing from cart:", action.payload);
             return {
                ...state,
-                cardData: state.cardData.filter(item => item.id!==action.payload),
+                cardData: state.cardData.filter(item => item.id!==action.payload.id),
             }
         default:
             return state;

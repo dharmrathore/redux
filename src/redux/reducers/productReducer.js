@@ -1,4 +1,4 @@
-import { ADD_TO_CARD, REMOVE_TO_CARD } from "../actions/productActions";
+// import { ADD_TO_CARD, REMOVE_TO_CARD } from "../actions/productActions";
 
 
 const initialStateProduct ={
@@ -15,10 +15,13 @@ const  productReducer = (state = initialStateProduct, action) =>{
             }
         case 'REMOVE_TO_CARD':
             console.log("Removing from cart:", action.payload);
+            const updatedCart = [...state.cardData];
+            const index = updatedCart.findIndex(item => item.id === action.payload.id);
+            if (index !== -1) updatedCart.splice(index, 1); 
             return {
-               ...state,
-                cardData: state.cardData.filter(item => item.id!==action.payload.id),
-            }
+                ...state,
+                cardData: updatedCart,
+            };
         default:
             return state;
     }

@@ -14,6 +14,7 @@ import store from './redux/store';
 
 import { loginSuccess, logout } from './redux/actions/authActions'
 import HomeLayout from './pages/HomeLayout';
+import Login from './components/Login';
 
 // import {addToCard} from './redux/actions/productActions';
 
@@ -25,21 +26,13 @@ function AppLayout(){
 //console.log(cartItems,"=-09876543234567890-=");
 	if (!isAuthenticated) {
 		return (
-		  <>
-			{isAuthenticated ? (
-			  <>
-				<button className='btn btn-danger' onClick={() => dispatch(logout())}>Logout</button>
-			  </>
-			) : (
-				<div className='d-flex w-100 h-100 p-4 align-items-center justify-content-center'>
-
-				<button className='btn btn-success d-inline-block' onClick={() => dispatch(loginSuccess({ name: 'Dharmendra' }))}>
-					Login
-				</button>
-				</div>
-			)}
-		  </>
-		);
+			<div className='d-flex w-100 h-100 p-4 align-items-center justify-content-center'>
+				<Login />
+			</div>
+		)
+	}
+	else{
+		<button className='btn btn-danger' onClick={() => dispatch(logout())}>Logout</button> 
 	}
 
 	return (

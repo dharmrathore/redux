@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import {  Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 // import Home from './pages/Home';
@@ -48,6 +49,15 @@ function AppLayout(){
 					<Route path="/contact" element={<Contact />} />
 				</Routes>
 			</main>
+			<footer className='d-flex align-items-center gap-2 flex-wrap'>
+				<p>�� 2025 Your Website. All rights reserved.</p>
+                <p>Developed by <a href="https://www.yourwebsite.com">Your Name</a></p>
+                <p>Powered by <a href="https://reactjs.org/">React</a></p>
+                <p>Theme by <a href="https://www.bootstrap.com/">Bootstrap</a></p>
+                <p>Icons by <a href="https://fontawesome.com/">Font Awesome</a></p>
+                <p>Source code available on <a href="https://github.com/yourusername/yourwebsite">GitHub</a></p>
+                <p>Contact us at <a href="mailto:yourwebsite@example.com">yourwebsite@example.com</a></p>
+			</footer>
 		</>
     );
 };

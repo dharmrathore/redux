@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import { useDispatch, useSelector } from 'react-redux';
-import { loginSuccess, logout } from '.././redux/actions/authActions'
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '.././redux/actions/authActions'
 
 
 const Login = () => {
@@ -63,7 +63,7 @@ const Login = () => {
 		<>
 		
 
-			<form onSubmit={handleSubmit} method='POST' className='d-flex w-25 flex-column gap-3 border rounded-3 p-4 bg-gradient bg-light'>
+			<form onSubmit={handleSubmit} method='POST' className='d-flex w-100 flex-column gap-3 border rounded-3 p-4 bg-gradient bg-light'>
 				<div className="form-group">
 					<label htmlFor="name">Name <sup>*</sup></label>
                     <input type="name" id="name" name="name" value={formData.name} required className='form-control' onChange={handleChange} />

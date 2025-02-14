@@ -26,15 +26,18 @@ const Blog = () => {
 
     return (
         <>
-            <div className="row row-cols-lg-4 gy-4">
+          
+
+           
+            <div className="row row-cols-lg-4 g-3">
                 
                 {products.map((product , index) => (
                     <div className="col">
                     <ProductCard key={product.id || index} product={product} />
                     </div>
                 ))}
-            
-            </div>
+             </div>
+          
         </>
     )
 }

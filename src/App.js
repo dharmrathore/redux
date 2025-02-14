@@ -1,5 +1,7 @@
 import React from 'react';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 import {  Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -13,9 +15,11 @@ import store from './redux/store';
 // import Login from './components/Login';
 // import Product from './components/Product';
 
-import { loginSuccess, logout } from './redux/actions/authActions'
+import {logout } from './redux/actions/authActions'
 import HomeLayout from './pages/HomeLayout';
 import Login from './components/Login';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 // import {addToCard} from './redux/actions/productActions';
 
@@ -27,7 +31,7 @@ function AppLayout(){
 //console.log(cartItems,"=-09876543234567890-=");
 	if (!isAuthenticated) {
 		return (
-			<div className='d-flex w-100 h-100 p-4 align-items-center justify-content-center'>
+			<div className='d-flex  h-100 py-4 align-items-center justify-content-center login-grid'>
 				<Login />
 			</div>
 		)
@@ -38,10 +42,13 @@ function AppLayout(){
 
 	return (
         <>
-			<header className="d-flex w-100 px-3 bg-light">
-				<Header logout={() => dispatch(logout())} cartCount={cartItems.length}/>
+			<header className="d-flex w-100 p-3 bg-light">
+				<Header logout={() => dispatch(logout())} cartCount={cartItems.length}  user={user}/>
 			</header>
-			<main className='py-3 container'>
+			<nav className='bg-light py-3'>
+				<Navbar/>
+			</nav>
+			<main className='p-4'>
 				<Routes>
 					<Route path="/" element={<HomeLayout user={user}/>} />
 					<Route path="/about" element={<About />} />
@@ -49,14 +56,8 @@ function AppLayout(){
 					<Route path="/contact" element={<Contact />} />
 				</Routes>
 			</main>
-			<footer className='d-flex align-items-center gap-2 flex-wrap'>
-				<p>�� 2025 Your Website. All rights reserved.</p>
-                <p>Developed by <a href="https://www.yourwebsite.com">Your Name</a></p>
-                <p>Powered by <a href="https://reactjs.org/">React</a></p>
-                <p>Theme by <a href="https://www.bootstrap.com/">Bootstrap</a></p>
-                <p>Icons by <a href="https://fontawesome.com/">Font Awesome</a></p>
-                <p>Source code available on <a href="https://github.com/yourusername/yourwebsite">GitHub</a></p>
-                <p>Contact us at <a href="mailto:yourwebsite@example.com">yourwebsite@example.com</a></p>
+			<footer className='d-flex align-items-center gap-3 flex-wrap bg-secondary py-3'>
+				<Footer/>
 			</footer>
 		</>
     );
@@ -64,8 +65,7 @@ function AppLayout(){
 
 function App() {
 	return (
-		<div className="d-grid">
-		
+		<div className="d-grid layout-grid">
 			<Provider store={store}>
 				<AppLayout/>
 			</Provider>

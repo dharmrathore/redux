@@ -10,7 +10,7 @@ const ProductCard = ({product}) => {
     return (
         <>
         <div className="card border shadow-sm text-center" >
-            <img src={product.images} className="card-img-top" alt={product.images} />
+            <img src={product.images} className="card-img-top mx-auto" alt={product.images} width={100} height={100}/>
             <div className="card-body">
                 <span className={`badge ${product.stock ? 'bg-success' : 'bg-danger'}`}>
                     {product.stock ? "In Stock" : "Out of Stock"}

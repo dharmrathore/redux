@@ -1,47 +1,35 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { MdOutlineLogout } from "react-icons/md";
+import Profile from './Profile';
 
 
-const LinkItems =[
-    {path: '/',label: 'Home'},
-    {path: '/about',label: 'About'},
-    {path: '/blog',label: 'Blog'},
-    {path: '/contact',label: 'Contact'},
-]
 
 
-const Header = ({logout, cartCount}) => {
 
-    const {pathname} = useLocation();
+const Header = ({logout, cartCount, user}) => {
 
     return (
         <>
-            <nav className='navbar justify-content-between w-100'>
-                <ul className='navbar-nav flex-row gap-3'>
-
-                    {LinkItems.map(({path, label})=>{
-                        return (
-                            <li key={path} className={`nav-item`}>
-                                <Link to={path} className={`nav-link ${pathname === path? 'active': ''}`}>{label}</Link>
-                            </li>
-                        )
-                    } )}
-
-                    {/* <li className='nav-item'><Link className={`nav-link ${pathname === '/' ? 'active': ''}`} to="/" >Home</Link></li>
-                    <li className='nav-item'><Link className={`nav-link ${pathname === '/about' ? 'active': ''}`} to="/about" >About</Link></li>
-                    <li className='nav-item'><Link className={`nav-link ${pathname === '/blog' ? 'active': ''}`} to="/blog" >Blog</Link></li>
-                    <li className='nav-item'><Link className={`nav-link ${pathname === '/contact' ? 'active': ''}`} to="/contact" >Contact</Link></li> */}
-                </ul>
-               <ul className='navbar-nav flex-row gap-3 align-items-center'>
+            <div className='navbar justify-content-between w-100 p-0'>
+                <Link to="/">
+                    Appy pie
+                </Link>
+               <ul className='d-flex  gap-3 align-items-center'>
                     <li> 
-                    <button className="btn btn-danger" onClick={()=>{ window.location.replace("/");logout()}}>Logout</button>
-                
+                        <button type='button' className="btn btn-danger btn-sm rounded-pill" onClick={()=>{ window.location.replace("/");logout()}}>
+                            <MdOutlineLogout size={25} />
+                        </button>
                     </li>
                     <li>
-                    <span className='badge bg-primary'>Card Item {cartCount} </span>
+                        <button type='button' className="btn btn-primary btn-sm rounded-pill"><IoMdNotificationsOutline size={25} /> {cartCount} </button>
+                    </li>
+                    <li className='dropup-center '>
+                        <Profile user={user}/>
                     </li>
                </ul>
-            </nav>
+            </div>
         </>
     )
 }

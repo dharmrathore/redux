@@ -42,13 +42,13 @@ function AppLayout(){
 
 	return (
         <>
-			<header className="d-flex w-100 p-3 bg-light">
+			<header className="bg-gradient bg-light border-bottom d-flex px-3 py-2 shadow-sm w-100">
 				<Header logout={() => dispatch(logout())} cartCount={cartItems.length}  user={user}/>
 			</header>
-			<nav className='bg-light py-3'>
+			<nav className='bg-gradient bg-light py-0 border-end shadow-sm'>
 				<Navbar/>
 			</nav>
-			<main className='p-4'>
+			<main className='p-3 thinScrollbar'>
 				<Routes>
 					<Route path="/" element={<HomeLayout user={user}/>} />
 					<Route path="/about" element={<About />} />
@@ -56,7 +56,7 @@ function AppLayout(){
 					<Route path="/contact" element={<Contact />} />
 				</Routes>
 			</main>
-			<footer className='d-flex align-items-center gap-3 flex-wrap bg-secondary py-3'>
+			<footer className='d-flex align-items-center gap-3 flex-wrap bg-black py-3'>
 				<Footer/>
 			</footer>
 		</>

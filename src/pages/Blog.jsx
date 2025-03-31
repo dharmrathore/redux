@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import ProductCard from '../components/ProductCard'
+import React, { useEffect, useState, Suspense, lazy } from 'react'
+// import ProductCard from '../components/ProductCard'
+const ProductCard = lazy(() => import("../components/ProductCard"));
+
 
 const Blog = () => {
 
@@ -27,17 +29,24 @@ const Blog = () => {
     return (
         <>
           
+          
 
            
-            <div className="row row-cols-lg-4 g-3">
-                
-                {products.map((product , index) => (
-                    <div className="col">
-                    <ProductCard key={product.id || index} product={product} />
-                    </div>
-                ))}
-             </div>
-          
+            <Suspense fallback={<p className='d-flex h-100 w-100 align-items-center bg-dark'>Loading Components...</p>}>
+                <div className="row row-cols-lg-4 g-3">
+                    {products.length > 0 ? (
+                        products.map((product, index) => (
+
+                            <div className="col">
+                                <ProductCard key={product.id || index} product={product} />
+                            </div>
+                        ))
+                    ) : (
+                        <p>Loading Products...</p>
+                    )}
+                </div>
+            </Suspense>
+
         </>
     )
 }

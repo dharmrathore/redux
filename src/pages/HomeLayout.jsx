@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useEffect } from "react";
 
 const HomeLayout = ({ user }) => {
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
+    const [text, setText] = useState("Hello Dev");
+    const [data, setDate] = useState([]);
+
+
+    useEffect(() =>{
+        console.log(`Data Listed: ${data}`);
+
+        fetch ("https://jsonplaceholder.typicode.com/posts")
+        .then( (res) => res.json() )
+        .then( (json) => setDate(json));
+    }, [data]);
+
 
     const handleSendMessage = async () => {
         if (!input) return;
@@ -35,6 +48,7 @@ const HomeLayout = ({ user }) => {
         setInput("");
     };
 
+
     return (
         <>
             <h2>Welcome, {user?.name}</h2>
@@ -58,6 +72,15 @@ const HomeLayout = ({ user }) => {
                     Send
                 </button>
             </div>
+
+                <ul className="list-group">
+                    {data.slice(0,5).map( (item) =>(
+                        <li className="list-group-item" key={item.id}>{item.title}</li>
+                    ))}
+                </ul>
+
+                <h1 onClick={() => setText("My is Dev")}>{text}</h1>
+
         </>
     );
 };

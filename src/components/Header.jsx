@@ -18,7 +18,7 @@ const Header = ({logout, cartCount, user}) => {
                 </Link>
                <ul className='d-flex  gap-2 align-items-center'>
                     <li> 
-                        <button type='button' className="btn btn-sm d-flex align-items-center justify-content-center bg-white rounded-circle position-relative shadow-sm" onClick={()=>{ window.location.replace("/");logout()}}>
+                        <button type='button' className="btn btn-sm d-flex align-items-center justify-content-center bg-white rounded-circle position-relative shadow-sm" onClick={()=>{ window.location.replace("/");logout();localStorage.removeItem("formData")}}>
                         <LuLogOut size={20}/>
 
                         </button>

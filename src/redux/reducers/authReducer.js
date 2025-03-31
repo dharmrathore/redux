@@ -2,6 +2,8 @@
 const initialState = {
     isAuthenticated : false,
     user : null,
+    usersList: []
+   
 }
 
 const authReducer = (state = initialState, action) =>{
@@ -12,6 +14,8 @@ const authReducer = (state = initialState, action) =>{
                ...state,
                 isAuthenticated : true,
                 user : action.payload,
+                usersList: [...state.usersList, action.payload]
+               
         
             }
             case 'LOGOUT':

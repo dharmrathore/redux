@@ -42,13 +42,34 @@ const HomeLayout = ({ user, usersList }) => {
 
 
 
-            <h3>Logged-in Users List</h3>
-            <ul>
+            <table className="table  table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {usersList.map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.name}</td>
+                            <td>{item.email}</td>
+                        </tr>
+                    ))}
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colSpan="2">Total Users: {usersList.length}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            {/* <ul>
                 {usersList.map((item, index) => {
                     console.log('listed', usersList); 
                     return <li key={index}>{item.name} - {item.email}</li>; // ✅ Return JSX properly
                 })}
-            </ul>
+            </ul> */}
 
             
       

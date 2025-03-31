@@ -34,10 +34,10 @@ const Login = () => {
 
 	const handleSubmit = (e) =>{
 		e.preventDefault();
-		let data = localStorage.formData2;
+		let data = localStorage.getItem('formData2');
+		data = data ? JSON.parse(data) : [];
 
 		localStorage.setItem('formData', JSON.stringify(formData));
-		data = data ? JSON.parse(data) : {}; 
 
 		const password = formData.password;
 		const inValidpwd = password.length >= 10 && /[a-zA-Z]/.test(password) && /\d/.test(password);
@@ -53,17 +53,18 @@ const Login = () => {
 		// 	return true;
 		// }
 		console.log('Form Submitted:', formData);
-		data = { ...data, ...formData };
+		data.push(formData);
 
-		localStorage.setItem('formData2', data);
-			dispatch(loginSuccess(formData));
+
+		localStorage.setItem('formData2', JSON.stringify(data));
+		dispatch(loginSuccess(formData));
 	}
 
 	const handlePasswordVIew = () =>{
 		console.log("passwordView", passwordView)
 		setPasswordView(!passwordView);
 	}
-
+ 
 
 
 	return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -30,10 +30,16 @@ function AppLayout(){
 	const cartItems = useSelector(state => state.product.cardData);
 //console.log(cartItems,"=-09876543234567890-=");
 
+	const loginIn = useCallback (() =>{
+		if(localStorage.formData){
+			console.log('Form Submitted:', localStorage.formData);
+			dispatch(loginSuccess(localStorage.formData));
+		}
+	},[dispatch])
 
 	useEffect( () =>{
 		loginIn()
-	}, [])
+	}, [loginIn])
 
 
 	if (!isAuthenticated) {
@@ -49,12 +55,7 @@ function AppLayout(){
 
 
 
-	function loginIn(){
-		if(localStorage.formData){
-			console.log('Form Submitted:', localStorage.formData);
-			dispatch(loginSuccess(localStorage.formData));
-		}
-	}
+
 
 	return (
         <>

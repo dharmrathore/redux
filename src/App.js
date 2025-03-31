@@ -28,12 +28,20 @@ function AppLayout(){
 	const dispatch = useDispatch();
 	const {isAuthenticated, user} = useSelector(state => state.auth);
 	const cartItems = useSelector(state => state.product.cardData);
+	const usersList = useSelector(state => state.auth.usersList)
+
+	//console.log('--------', usersList)
 //console.log(cartItems,"=-09876543234567890-=");
 
 	const loginIn = useCallback (() =>{
-		if(localStorage.formData){
-			console.log('Form Submitted:', localStorage.formData);
-			dispatch(loginSuccess(localStorage.formData));
+		// if(localStorage.formData){
+		// 	console.log('Form Submitted:', localStorage.formData);
+		// 	dispatch(loginSuccess(localStorage.formData));
+		// }
+		if (localStorage.formData) {
+			const userData = JSON.parse(localStorage.formData);
+			dispatch(loginSuccess(userData)); 
+			//dispatch()
 		}
 	},[dispatch])
 
@@ -67,7 +75,7 @@ function AppLayout(){
 			</nav>
 			<main className='p-4'>
 				<Routes>
-					<Route path="/" element={<HomeLayout user={user}/>} />
+					<Route path="/" element={<HomeLayout user={user} usersList={usersList}/>} />
 					<Route path="/about" element={<About />} />
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/contact" element={<Contact />} />

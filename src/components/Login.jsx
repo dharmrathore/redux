@@ -13,7 +13,6 @@ const Login = () => {
 	const [passwordView, setPasswordView] = useState(false);
 	const [showToast, setShowToast] = useState(false);
 
-
 	const [formData,setFormData] = useState({
 		name: '',
         email: '',
@@ -35,15 +34,16 @@ const Login = () => {
 
 	const handleSubmit = (e) =>{
 		e.preventDefault();
-		
+		let data = localStorage.formData2;
+
 		localStorage.setItem('formData', JSON.stringify(formData));
+		data = data ? JSON.parse(data) : {}; 
 
 		const password = formData.password;
 		const inValidpwd = password.length >= 10 && /[a-zA-Z]/.test(password) && /\d/.test(password);
 
 
 		if(!inValidpwd){
-			// alert('Please enter a valid 10-digit number');
 			setShowToast(true)
 			setTimeout(() => setShowToast(false), 2000);
 			return false;
@@ -53,8 +53,10 @@ const Login = () => {
 		// 	return true;
 		// }
 		console.log('Form Submitted:', formData);
-		dispatch(loginSuccess(formData));
+		data = { ...data, ...formData };
 
+		localStorage.setItem('formData2', data);
+			dispatch(loginSuccess(formData));
 	}
 
 	const handlePasswordVIew = () =>{

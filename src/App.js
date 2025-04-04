@@ -67,10 +67,10 @@ function AppLayout(){
 
 	return (
         <>
-			<header className="d-flex w-100 p-3 bg-light">
+			<header className="d-flex w-100 p-3 bg-light shadow-sm">
 				<Header logout={() => dispatch(logout())} cartCount={cartItems.length}  user={user}/>
 			</header>
-			<nav className='bg-light py-3'>
+			<nav className='bg-light'>
 				<Navbar/>
 			</nav>
 			<main className='p-4'>

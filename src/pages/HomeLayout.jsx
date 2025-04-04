@@ -1,7 +1,9 @@
 import React from "react";
 //import axios from "axios";
 
-const HomeLayout = ({ user, usersList }) => {
+const HomeLayout = ({ user }) => {
+
+    // console.log('value usersList', usersList)
     // const [messages, setMessages] = useState([]);
     // const [input, setInput] = useState("");
 
@@ -35,6 +37,8 @@ const HomeLayout = ({ user, usersList }) => {
     //     setInput("");
     // };
 
+let  usersList = JSON.parse(localStorage.formData2)
+console.log(usersList,"------sv sfdxvs--");
 
     return (
         <>  
@@ -42,16 +46,18 @@ const HomeLayout = ({ user, usersList }) => {
 
 
 
-            <table className="table  table-striped">
+            <table className="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Name</th>
                         <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {usersList.map((item, index) => (
+                    {usersList?.map((item, index) => (
                         <tr key={index}>
+                            <td>{index}</td>
                             <td>{item.name}</td>
                             <td>{item.email}</td>
                         </tr>
@@ -60,7 +66,7 @@ const HomeLayout = ({ user, usersList }) => {
 
                 <tfoot>
                     <tr>
-                        <td colSpan="2">Total Users: {usersList.length}</td>
+                        <td colSpan="3">Total Users: {usersList?.length}</td>
                     </tr>
                 </tfoot>
             </table>

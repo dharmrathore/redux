@@ -74,7 +74,7 @@ main{
     overscroll-behavior-y: contain;
     scrollbar-width: auto;
 	overflow-y: auto;
-	height: calc(100vh - 115px);
+	height: calc(100vh - 129px);
 }
 footer{
 	grid-area: footer;
@@ -116,7 +116,7 @@ header .btn-sm{
 @media  (min-width: 992px) {
 	.layout-grid{
 		grid-template-areas:
-			'nav header'
+			'header header'
 			'nav main'
 			'footer footer';
 

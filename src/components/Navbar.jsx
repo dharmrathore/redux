@@ -4,6 +4,7 @@ import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { GrContactInfo } from "react-icons/gr";
 import { TbBookmarkEdit } from "react-icons/tb";
 import { MdOutlineContactPhone } from "react-icons/md";
+import { RiCustomerService2Line } from "react-icons/ri";
 
 
 
@@ -11,6 +12,7 @@ const LinkItems = [
     { path: '/', label: 'Dashboard', icons: <MdOutlineSpaceDashboard /> },
     { path: '/about', label: 'About', icons: <GrContactInfo /> },
     { path: '/blog', label: 'Blog', icons: <TbBookmarkEdit />},
+    { path: '/service', label: 'Service', icons: <RiCustomerService2Line />},
     { path: '/contact', label: 'Contact', icons: <MdOutlineContactPhone />},
 ]
 

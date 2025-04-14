@@ -20,6 +20,8 @@ import HomeLayout from './pages/HomeLayout';
 import Login from './components/Login';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import NotFound from './pages/NotFound';
+import Service from './pages/Service';
 
 // import {addToCard} from './redux/actions/productActions';
 
@@ -78,7 +80,9 @@ function AppLayout(){
 					<Route path="/" element={<HomeLayout user={user} usersList={usersList}/>} />
 					<Route path="/about" element={<About />} />
 					<Route path="/blog" element={<Blog />} />
+					<Route path="/service" element={<Service />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="*" element={NotFound}/>
 				</Routes>
 			</main>
 			<footer className='d-flex align-items-center gap-3 flex-wrap bg-secondary py-3'>

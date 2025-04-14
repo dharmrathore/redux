@@ -1,4 +1,7 @@
 import React from "react";
+import PeopleInvite from "../components/dashboard/PeopleInvite";
+import UserLoginTime from "../components/dashboard/UserLoginTime";
+import Timesheet from "../components/dashboard/Timesheet";
 //import axios from "axios";
 
 const HomeLayout = ({ user }) => {
@@ -37,16 +40,19 @@ const HomeLayout = ({ user }) => {
     //     setInput("");
     // };
 
-let  usersList = JSON.parse(localStorage.formData2)
-console.log(usersList,"------sv sfdxvs--");
+// let  usersList = JSON.parse(localStorage.formData2)
+// console.log(usersList,"------sv sfdxvs--");
 
     return (
         <>  
-            <h2>Welcome, {user?.name}</h2>
+            {/* <h2>Welcome, {user?.name}</h2> */}
+
+            <PeopleInvite user={user} />
+            <UserLoginTime user={{...user ,  loginTime: '2025-04-13T09:30:00' }} />
+            <Timesheet/>
 
 
-
-            <table className="table table-bordered table-hover table-striped">
+            {/* <table className="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -69,7 +75,7 @@ console.log(usersList,"------sv sfdxvs--");
                         <td colSpan="3">Total Users: {usersList?.length}</td>
                     </tr>
                 </tfoot>
-            </table>
+            </table> */}
             {/* <ul>
                 {usersList.map((item, index) => {
                     console.log('listed', usersList); 

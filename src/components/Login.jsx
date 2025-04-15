@@ -37,27 +37,28 @@ const Login = () => {
 		let data = localStorage.getItem('formData2');
 		data = data ? JSON.parse(data) : [];
 
-		localStorage.setItem('formData', JSON.stringify(formData));
+		// Create a new Date object and format it properly
+		const now = new Date();
+		const userData = {
+			...formData,
+			loginTime: now.toISOString() // Store as ISO string
+		};
+
+		localStorage.setItem('formData', JSON.stringify(userData));
 
 		const password = formData.password;
 		const inValidpwd = password.length >= 10 && /[a-zA-Z]/.test(password) && /\d/.test(password);
-
 
 		if(!inValidpwd){
 			setShowToast(true)
 			setTimeout(() => setShowToast(false), 2000);
 			return false;
-        }
-		// else{
-		// 	console.log('Password number', password);
-		// 	return true;
-		// }
-		console.log('Form Submitted:', formData);
-		data.push(formData);
-
+		}
+		console.log('Form Submitted:', userData);
+		data.push(userData);
 
 		localStorage.setItem('formData2', JSON.stringify(data));
-		dispatch(loginSuccess(formData));
+		dispatch(loginSuccess(userData));
 	}
 
 	const handlePasswordVIew = () =>{

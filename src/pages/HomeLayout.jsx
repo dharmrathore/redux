@@ -48,7 +48,7 @@ const HomeLayout = ({ user }) => {
             {/* <h2>Welcome, {user?.name}</h2> */}
 
             <PeopleInvite user={user} />
-            <UserLoginTime user={{...user ,  loginTime: '2025-04-13T09:30:00' }} />
+            <UserLoginTime user={user} />
             <Timesheet/>
 
 

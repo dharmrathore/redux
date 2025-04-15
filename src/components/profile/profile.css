@@ -1,0 +1,23 @@
+
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 2.625rem;
+    height: 2.625rem;
+    border-radius: .5rem
+}
+
+.avatar:not(img) {
+    background-color: #fff
+}
+
+.avatar-img {
+    max-width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    border-radius: .5rem
+}
+.shadow{
+	box-shadow: 0 .6125rem 2.5rem .6125rem rgba(140,152,164,.175) !important;
+}

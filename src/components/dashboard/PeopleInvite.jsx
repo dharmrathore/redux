@@ -23,7 +23,7 @@ const PeopleInvite = ({props, user}) => {
                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li>
                                 <button type="button" className="dropdown-item">
-                                    <img src="images/user.jpg" alt="e" width="40" height="40" />
+                                    <img src="/images/user.jpg" alt="User" width="40" height="40" />
                                     <span>{user.name}</span>
                                 </button>
                             </li>

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LuLogOut } from "react-icons/lu";
-import Profile from './Profile';
+import Profile from './profile/Profile';
 // import logo from '../images/logo.png';
 
 

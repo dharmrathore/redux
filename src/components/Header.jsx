@@ -1,15 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { LuLogOut } from "react-icons/lu";
 import Profile from './profile/Profile';
-// import logo from '../images/logo.png';
+import { useDispatch } from 'react-redux';
 
 
 
-
-const Header = ({logout, cartCount, user}) => {
-
+const Header = ({ logout, cartCount, user}) => {
+    const dispatch = useDispatch();
     return (
         <>
             <div className='navbar justify-content-between w-100 p-0'>
@@ -24,12 +22,7 @@ const Header = ({logout, cartCount, user}) => {
                          </button>
                     </li>
                     <li className='dropup-center '>
-                        <Profile user={user}/>
-                    </li>
-                    <li> 
-                        <button type='button' className="btn btn-sm d-flex align-items-center justify-content-center bg-white rounded-circle position-relative shadow-sm" onClick={()=>{ window.location.replace("/");logout();localStorage.removeItem("formData")}}>
-                        <LuLogOut size={20}/>
-                        </button>
+                        <Profile user={user} logout={() => dispatch(logout())}/>
                     </li>
                </ul>
             </div>

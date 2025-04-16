@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './PeopleInvite.css';
 import { LuUserRoundPlus } from "react-icons/lu";
-
+import InviteUserModal from './InviteUserModal';
 
 
 
@@ -13,21 +13,19 @@ const PeopleInvite = ({props, user}) => {
     const maxUserVisible = 5;
 
 
+    const [showModal, setShowModal] = useState(false);
+
+
+
     return (
         <>
             <div className="home d-flex justify-content-between mb-3 flex-wrap gap-3 border-bottom">
                 <div className="pagename">
                     <div className="dropdown">
-                        <button type="button" className="btn border-0 d-inline-flex align-items-center gap-1 px-3 bg-transparent text-white dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-                        ><LuUserRoundPlus /> Invite People</button>
-                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li>
-                                <button type="button" className="dropdown-item">
-                                    <img src="/images/user.jpg" alt="User" width="40" height="40" />
-                                    <span>{user.name}</span>
-                                </button>
-                            </li>
-                        </ul>
+                        <button type="button" className="btn border-0 d-inline-flex align-items-center gap-1 px-3 bg-transparent text-white" onClick={() => setShowModal(true)} >
+                            <LuUserRoundPlus /> Invite People 
+                        </button>
+                        
                     </div>
                 </div>
                 <div className="work-user d-flex align-items-center justify-content-center me-auto ps-5">
@@ -55,6 +53,15 @@ const PeopleInvite = ({props, user}) => {
 
                     </div>
                 </div>
+
+
+
+
+        {/* Invite People Modal */}
+
+                    <InviteUserModal showModal={showModal} setShowModal={setShowModal} />
+        
+
         </>
     )
 }

@@ -136,3 +136,10 @@ header .btn-sm{
 .time {
     width: 60px;
 }
+.show {
+    display: block;
+	backdrop-filter: blur(2px);
+}
+.fade:not(.show) {
+    opacity: 0;
+}

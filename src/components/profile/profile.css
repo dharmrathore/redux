@@ -21,3 +21,18 @@
 .shadow{
 	box-shadow: 0 .6125rem 2.5rem .6125rem rgba(140,152,164,.175) !important;
 }
+.right-outside{
+    right: calc(100% + 1rem);
+}
+.legend-indicator {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    background-color: #bdc5d1;
+    border-radius: 50%;
+    margin-right: .4375rem;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    color: var(--lay-primary-color);
+    background-color: #f8f9fa;
+}

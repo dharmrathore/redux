@@ -54,7 +54,7 @@ function AppLayout(){
 
 	if (!isAuthenticated) {
 		return (
-			<div className='d-flex  h-100 py-4 align-items-center justify-content-center login-grid'>
+			<div className='d-flex  h-100  align-items-center justify-content-center login-grid'>
 				<Login />
 			</div>
 		)

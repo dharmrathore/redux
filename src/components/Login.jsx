@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
-
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '.././redux/actions/authActions'
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-
 const Login = () => {
-
 	const dispatch = useDispatch();
 	// const { isAuthenticated, user } = useSelector((state) => state.auth)
 
@@ -18,7 +15,6 @@ const Login = () => {
         email: '',
         password: ''
 	})
-
 
 	const handleChange = (e) => {
 		//console.log('value', e.target.value)
@@ -80,52 +76,105 @@ const Login = () => {
 		// 		</button>
 		// 	}
 		// </div>
-		<>
-		
+		<div className="container-fluid vh-100">
+			<div className="row h-100">
+				{/* Left side with image */}
+				<div className="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-primary">
+					<div className="text-center text-white p-5">
+						<h1 className="display-4 mb-2">Welcome Back!</h1>
+						<p className="lead">Sign in to continue your journey with us</p>
+						<img 
+							src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4685.jpg" 
+							alt="Login Illustration" 
+							className="img-fluid mt-3 img-thumbnail"
+							style={{ maxWidth: '80%' }}
+						/>
+					</div>
+				</div>
 
-			<form onSubmit={handleSubmit} method='POST' className='d-flex w-100 flex-column gap-3 border rounded-3 p-4 bg-gradient bg-light'>
-				<div className="form-group">
-					<label htmlFor="name">Name <sup>*</sup></label>
-                    <input type="name" id="name" name="name" value={formData.name} required className='form-control' onChange={handleChange} />
-				</div>
-				<div className="form-group">
-					<label htmlFor="email">Email <sup>*</sup></label>
-                    <input type="email" id="email" name="email" value={formData.email} required className='form-control' onChange={handleChange}/>
-				</div>
-				<div className="form-group position-relative">
-					<>
-						<label htmlFor="password">Password <sup>*</sup></label>
-						{passwordView ? (
-							<input type="text" id="password" name="password" value={formData.password} required className='form-control pe-4' onChange={handleChange}/>
-						):(
-							<input type="password" id="password" name="password" value={formData.password} required className='form-control pe-4' onChange={handleChange}/>
-						)}
-					</>
-					<button className='btn btn-sm position-absolute top-0 end-0 mt-4 border-0 bg-transparent' type='button' onClick={handlePasswordVIew}>
-						{passwordView ? (
-							<FiEye size={20}/>
-						):(
-							<FiEyeOff size={20}/>
-						)}
-					</button>
-					
-				</div>
-				<div className="form-group">
-					<input type='submit' className='btn btn-success d-inline-block' name='Submit' value="Submit"/>
-				</div>
-			</form>
+				{/* Right side with form */}
+				<div className="col-md-6 d-flex align-items-center justify-content-center">
+					<div className="w-100 p-4" style={{ maxWidth: '500px' }}>
+						<div className="text-start mb-4">
+							<h2 className="fw-bold">Sign In</h2>
+							<p className="text-muted">Please enter your details to continue</p>
+						</div>
 
-			{showToast && (
-                <div className="toast align-items-center text-bg-danger border-0 show position-fixed top-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div className="d-flex">
-                        <div className="toast-body">
-                            Password must be at least 10 characters long and contain both letters and numbers.
-                        </div>
-                   
-                    </div>
-                </div>
-            )}
-		</>
+						<form onSubmit={handleSubmit} className="needs-validation">
+							<div className="mb-3">
+								<label htmlFor="name" className="form-label">Name <span className="text-danger">*</span></label>
+								<input 
+									type="text" 
+									id="name" 
+									name="name" 
+									value={formData.name} 
+									required 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your name"
+								/>
+							</div>
+
+							<div className="mb-3">
+								<label htmlFor="email" className="form-label">Email <span className="text-danger">*</span></label>
+								<input 
+									type="email" 
+									id="email" 
+									name="email" 
+									value={formData.email} 
+									required 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your email"
+								/>
+							</div>
+
+							<div className="mb-4 position-relative">
+								<label htmlFor="password" className="form-label">Password <span className="text-danger">*</span></label>
+								<div className="input-group">
+									<input 
+										type={passwordView ? "text" : "password"} 
+										id="password" 
+										name="password" 
+										value={formData.password} 
+										required 
+										className="form-control" 
+										onChange={handleChange}
+										placeholder="Enter your password"
+									/>
+									<button 
+										className="btn btn-outline-secondary" 
+										type="button" 
+										onClick={handlePasswordVIew}
+									>
+										{passwordView ? <FiEye size={20}/> : <FiEyeOff size={20}/>}
+									</button>
+								</div>
+							</div>
+
+							<div className="d-grid">
+								<button 
+									type="submit" 
+									className="btn btn-primary btn-lg"
+								>
+									Sign In
+								</button>
+							</div>
+						</form>
+
+						{showToast && (
+							<div className="toast align-items-center text-bg-danger border-0 show position-fixed top-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
+								<div className="d-flex">
+									<div className="toast-body">
+										Password must be at least 10 characters long and contain both letters and numbers.
+									</div>
+								</div>
+							</div>
+						)}
+					</div>
+				</div>
+			</div>
+		</div>
 	)
 }
 

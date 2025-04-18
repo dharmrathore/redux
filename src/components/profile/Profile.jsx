@@ -60,7 +60,7 @@ const Profile = ({logout, user}) => {
 						</Link>
 					</div>
 				</div>
-				<Link className="dropdown-item btn" href="#">Profile &amp; account</Link>
+				<Link className="dropdown-item btn" to="/user-profile">Profile &amp; account</Link>
 				<Link className="dropdown-item btn" href="#">Settings</Link>
 				<div className="dropdown-divider"></div>
 				<Link className="dropdown-item btn" href="#">Manage team</Link>

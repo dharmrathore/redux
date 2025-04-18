@@ -13,7 +13,13 @@ const Login = () => {
 	const [formData,setFormData] = useState({
 		name: '',
         email: '',
-        password: ''
+        password: '',
+		phone: '',
+		address: '',
+		city: '',
+		state: '',
+		zip: '',
+		country: ''
 	})
 
 	const handleChange = (e) => {
@@ -151,7 +157,84 @@ const Login = () => {
 									</button>
 								</div>
 							</div>
-
+							<div className="mb-3">
+								<label htmlFor="phone" className="form-label">Phone <span className="text-danger">*</span></label>
+								<input 
+									type="text" 
+									id="phone" 
+									name="phone" 
+									value={formData.phone} 
+									required 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your phone number"
+								/>
+							</div>
+							<div className="mb-3">
+								<label htmlFor="address" className="form-label">Address <span className="text-danger">*</span></label>
+								<input 
+									type="text" 
+									id="address" 
+									name="address" 
+									value={formData.address} 
+									required 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your address"
+								/>
+							</div>
+							<div className="mb-3">
+								<label htmlFor="city" className="form-label">City <span className="text-danger">*</span></label>
+								<input 
+									type="text" 
+									id="city" 
+									name="city" 
+									value={formData.city} 
+									required 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your city"
+								/>
+							</div>
+							<div className="mb-3">	
+								<label htmlFor="state" className="form-label">State <span className="text-danger">*</span></label>
+								<input 
+									type="text" 
+									id="state" 
+									name="state" 
+									value={formData.state} 
+									required	 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your state"
+								/>
+							</div>
+							<div className="mb-3">	
+								<label htmlFor="zip" className="form-label">Zip <span className="text-danger">*</span></label>
+								<input 
+									type="text" 
+									id="zip" 
+									name="zip" 
+									value={formData.zip} 
+									required	 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your zip code"			
+								/>
+							</div>
+							<div className="mb-3">
+								<label htmlFor="country" className="form-label">Country <span className="text-danger">*</span></label>
+								<input 
+									type="text" 
+									id="country" 
+									name="country" 
+									value={formData.country} 
+									required	 
+									className="form-control" 
+									onChange={handleChange}
+									placeholder="Enter your country"
+								/>
+							</div>
 							<div className="d-grid">
 								<button 
 									type="submit" 

@@ -1,0 +1,149 @@
+.hover-bg-light:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.user-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+/* Dropdown styles */
+.dropdown-menu {
+    margin-top: 4px;
+}
+
+.dropdown-item {
+    padding: 8px 16px;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-item .fw-medium {
+    font-size: 0.875rem;
+    margin-bottom: 2px;
+}
+
+.dropdown-item .text-muted {
+    font-size: 0.75rem;
+}
+
+/* Selected users badges */
+.badge {
+    font-weight: normal;
+    font-size: 0.875rem;
+    background-color: #f8f9fa !important;
+    border: 1px solid #dee2e6;
+}
+
+.badge .btn-link:hover {
+    opacity: 0.7;
+}
+
+/* Invited users list */
+.invited-users-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.invited-users-list .badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Custom scrollbar */
+.dropdown-menu::-webkit-scrollbar,
+.invited-users-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track,
+.invited-users-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb,
+.invited-users-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover,
+.invited-users-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Search results dropdown */
+.dropdown-menu.w-100 {
+    margin-top: 4px;
+    border-radius: 4px;
+}
+
+.dropdown-menu.w-100 .dropdown-item {
+    padding: 8px 12px;
+}
+
+.dropdown-menu.w-100 .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-menu.w-100 .fw-medium {
+    font-size: 0.875rem;
+}
+
+.dropdown-menu.w-100 .text-muted {
+    font-size: 0.75rem;
+}
+
+/* Animations */
+.dropdown-menu.show {
+    animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading spinner */
+.spinner-border {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.15em;
+}
+
+/* Custom scrollbar for the user list */
+.user-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.user-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.user-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.user-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+} 

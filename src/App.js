@@ -22,6 +22,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import NotFound from './pages/NotFound';
 import Service from './pages/Service';
+import UserAccount from './pages/UserAccount';
 
 // import {addToCard} from './redux/actions/productActions';
 
@@ -82,6 +83,7 @@ function AppLayout(){
 					<Route path="/blog" element={<Blog />} />
 					<Route path="/service" element={<Service />} />
 					<Route path="/contact" element={<Contact />} />
+					<Route path="/user-profile" element={<UserAccount user={user}/>} />
 					<Route path="*" element={NotFound}/>
 				</Routes>
 			</main>

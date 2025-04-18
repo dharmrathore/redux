@@ -139,7 +139,16 @@ header .btn-sm{
 .show {
     display: block;
 	backdrop-filter: blur(2px);
+	animation: fadeIn .2s ease-in-out;
 }
 .fade:not(.show) {
     opacity: 0;
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

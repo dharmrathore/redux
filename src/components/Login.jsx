@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { loginSuccess } from '.././redux/actions/authActions'
-import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { FiEye, FiEyeOff, FiUser, FiMail, FiLock, FiPhone } from 'react-icons/fi';
 
 const Login = () => {
 	const dispatch = useDispatch();
@@ -9,66 +9,119 @@ const Login = () => {
 
 	const [passwordView, setPasswordView] = useState(false);
 	const [showToast, setShowToast] = useState(false);
-
-	const [formData,setFormData] = useState({
+	const [errors, setErrors] = useState({
 		name: '',
-        email: '',
-        password: '',
-		phone: '',
-		address: '',
-		city: '',
-		state: '',
-		zip: '',
-		country: ''
+		email: '',
+		password: '',
+		phone: ''
+	});
+
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		password: '',
+		phone: ''
 	})
 
+	const validateField = (name, value) => {
+		let error = '';
+		switch (name) {
+			case 'name':
+				if (!value) {
+					error = 'Name is required';
+				} else if (value.length < 3) {
+					error = 'Name must be at least 3 characters long';
+				} else if (!/^[a-zA-Z\s]+$/.test(value)) {
+					error = 'Name can only contain letters and spaces';
+				}
+				break;
+			case 'email':
+				if (!value) {
+					error = 'Email is required';
+				} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+					error = 'Please enter a valid email address';
+				}
+				break;
+			case 'password':
+				if (!value) {
+					error = 'Password is required';
+				} else if (value.length < 10) {
+					error = 'Password must be at least 10 characters long';
+				} else if (!/[a-zA-Z]/.test(value)) {
+					error = 'Password must contain at least one letter';
+				} else if (!/\d/.test(value)) {
+					error = 'Password must contain at least one number';
+				}
+				break;
+			case 'phone':
+				if (!value) {
+					error = 'Phone number is required';
+				} else if (!/^\d{10}$/.test(value)) {
+					error = 'Please enter a valid 10-digit phone number';
+				}
+				break;
+			default:
+				break;
+		}
+		return error;
+	}
+
 	const handleChange = (e) => {
-		//console.log('value', e.target.value)
-		const {name , value} = e.target
-       // setFormData({...formData, [e.target.name]: e.target.value });
-	   setFormData( (prevDate)=>({
-		...prevDate,
-		[name]:value,
-	   }) );
-    }
+		const { name, value } = e.target;
+		setFormData(prev => ({
+			...prev,
+			[name]: value
+		}));
+		
+		// Validate field on change
+		const error = validateField(name, value);
+		setErrors(prev => ({
+			...prev,
+			[name]: error
+		}));
+	}
 
 	// console.log('login', loginSuccess)
 
-	const handleSubmit = (e) =>{
+	const handleSubmit = (e) => {
 		e.preventDefault();
+		
+		// Validate all fields
+		const newErrors = {
+			name: validateField('name', formData.name),
+			email: validateField('email', formData.email),
+			password: validateField('password', formData.password),
+			phone: validateField('phone', formData.phone)
+		};
+		
+		setErrors(newErrors);
+		
+		// Check if there are any errors
+		if (Object.values(newErrors).some(error => error !== '')) {
+			setShowToast(true);
+			setTimeout(() => setShowToast(false), 3000);
+			return;
+		}
+
+		// If validation passes, proceed with form submission
 		let data = localStorage.getItem('formData2');
 		data = data ? JSON.parse(data) : [];
 
-		// Create a new Date object and format it properly
 		const now = new Date();
 		const userData = {
 			...formData,
-			loginTime: now.toISOString() // Store as ISO string
+			loginTime: now.toISOString()
 		};
 
 		localStorage.setItem('formData', JSON.stringify(userData));
-
-		const password = formData.password;
-		const inValidpwd = password.length >= 10 && /[a-zA-Z]/.test(password) && /\d/.test(password);
-
-		if(!inValidpwd){
-			setShowToast(true)
-			setTimeout(() => setShowToast(false), 2000);
-			return false;
-		}
-		console.log('Form Submitted:', userData);
 		data.push(userData);
-
 		localStorage.setItem('formData2', JSON.stringify(data));
 		dispatch(loginSuccess(userData));
 	}
 
-	const handlePasswordVIew = () =>{
-		console.log("passwordView", passwordView)
+	const handlePasswordView = () => {
 		setPasswordView(!passwordView);
 	}
- 
-
 
 	return (
 		// <div>
@@ -108,137 +161,99 @@ const Login = () => {
 
 						<form onSubmit={handleSubmit} className="needs-validation">
 							<div className="mb-3">
-								<label htmlFor="name" className="form-label">Name <span className="text-danger">*</span></label>
-								<input 
-									type="text" 
-									id="name" 
-									name="name" 
-									value={formData.name} 
-									required 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your name"
-								/>
+								<label htmlFor="name" className="form-label">
+									<FiUser className="me-2" />
+									Name <span className="text-danger">*</span>
+								</label>
+								<div className="input-group">
+									<input 
+										type="text" 
+										id="name" 
+										name="name" 
+										value={formData.name} 
+										required 
+										className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+										onChange={handleChange}
+										placeholder="Enter your name"
+									/>
+									{errors.name && <div className="invalid-feedback">{errors.name}</div>}
+								</div>
 							</div>
 
 							<div className="mb-3">
-								<label htmlFor="email" className="form-label">Email <span className="text-danger">*</span></label>
-								<input 
-									type="email" 
-									id="email" 
-									name="email" 
-									value={formData.email} 
-									required 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your email"
-								/>
+								<label htmlFor="email" className="form-label">
+									<FiMail className="me-2" />
+									Email <span className="text-danger">*</span>
+								</label>
+								<div className="input-group">
+									<input 
+										type="email" 
+										id="email" 
+										name="email" 
+										value={formData.email} 
+										required 
+										className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+										onChange={handleChange}
+										placeholder="Enter your email"
+									/>
+									{errors.email && <div className="invalid-feedback">{errors.email}</div>}
+								</div>
 							</div>
 
-							<div className="mb-4 position-relative">
-								<label htmlFor="password" className="form-label">Password <span className="text-danger">*</span></label>
-								<div className="input-group">
+							<div className="mb-3">
+								<label htmlFor="password" className="form-label">
+									<FiLock className="me-2" />
+									Password <span className="text-danger">*</span>
+								</label>
+								<div className="input-group position-relative">
 									<input 
 										type={passwordView ? "text" : "password"} 
 										id="password" 
 										name="password" 
 										value={formData.password} 
 										required 
-										className="form-control" 
+										className={`form-control border-2 rounded-3 ps-3 pe-5 ${errors.password ? 'is-invalid' : ''}`}
 										onChange={handleChange}
 										placeholder="Enter your password"
 									/>
 									<button 
-										className="btn btn-outline-secondary" 
+										className="btn position-absolute end-0 top-50 translate-middle-y text-muted border-0 bg-transparent" 
 										type="button" 
-										onClick={handlePasswordVIew}
+										onClick={handlePasswordView}
+										style={{zIndex: 5}}
 									>
-										{passwordView ? <FiEye size={20}/> : <FiEyeOff size={20}/>}
+										{passwordView ? <FiEye size={18}/> : <FiEyeOff size={18}/>}
 									</button>
+									{errors.password && <div className="invalid-feedback">{errors.password}</div>}
 								</div>
 							</div>
+
 							<div className="mb-3">
-								<label htmlFor="phone" className="form-label">Phone <span className="text-danger">*</span></label>
-								<input 
-									type="text" 
-									id="phone" 
-									name="phone" 
-									value={formData.phone} 
-									required 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your phone number"
-								/>
+								<label htmlFor="phone" className="form-label">
+									<FiPhone className="me-2" />
+									Phone <span className="text-danger">*</span>
+								</label>
+								<div className="input-group">
+									<input 
+										type="tel" 
+										id="phone" 
+										name="phone" 
+										value={formData.phone} 
+										required 
+										className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+										onChange={handleChange}
+										placeholder="Enter your phone number"
+									/>
+									{errors.phone && <div className="invalid-feedback">{errors.phone}</div>}
+								</div>
 							</div>
-							<div className="mb-3">
-								<label htmlFor="address" className="form-label">Address <span className="text-danger">*</span></label>
-								<input 
-									type="text" 
-									id="address" 
-									name="address" 
-									value={formData.address} 
-									required 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your address"
-								/>
-							</div>
-							<div className="mb-3">
-								<label htmlFor="city" className="form-label">City <span className="text-danger">*</span></label>
-								<input 
-									type="text" 
-									id="city" 
-									name="city" 
-									value={formData.city} 
-									required 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your city"
-								/>
-							</div>
-							<div className="mb-3">	
-								<label htmlFor="state" className="form-label">State <span className="text-danger">*</span></label>
-								<input 
-									type="text" 
-									id="state" 
-									name="state" 
-									value={formData.state} 
-									required	 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your state"
-								/>
-							</div>
-							<div className="mb-3">	
-								<label htmlFor="zip" className="form-label">Zip <span className="text-danger">*</span></label>
-								<input 
-									type="text" 
-									id="zip" 
-									name="zip" 
-									value={formData.zip} 
-									required	 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your zip code"			
-								/>
-							</div>
-							<div className="mb-3">
-								<label htmlFor="country" className="form-label">Country <span className="text-danger">*</span></label>
-								<input 
-									type="text" 
-									id="country" 
-									name="country" 
-									value={formData.country} 
-									required	 
-									className="form-control" 
-									onChange={handleChange}
-									placeholder="Enter your country"
-								/>
-							</div>
+
 							<div className="d-grid">
 								<button 
 									type="submit" 
 									className="btn btn-primary btn-lg"
+									disabled={Object.values(errors).some(error => error !== '') || 
+										!formData.name || !formData.email || !formData.password || !formData.phone}
 								>
 									Sign In
 								</button>
@@ -249,7 +264,7 @@ const Login = () => {
 							<div className="toast align-items-center text-bg-danger border-0 show position-fixed top-0 end-0 m-3" role="alert" aria-live="assertive" aria-atomic="true">
 								<div className="d-flex">
 									<div className="toast-body">
-										Password must be at least 10 characters long and contain both letters and numbers.
+										Please fix the errors in the form before submitting.
 									</div>
 								</div>
 							</div>

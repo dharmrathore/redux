@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Service = () => {
+const Service = ({pageName}) => {
     return (
-        <div>
-        Service
-        </div>
+        <h1 className='fs-5 fw-semibold mb-3'>
+        {pageName}
+        </h1>
     )
 }
 

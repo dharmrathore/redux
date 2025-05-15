@@ -78,11 +78,11 @@ function AppLayout(){
 			</nav>
 			<main className='p-4'>
 				<Routes>
-					<Route path="/" element={<HomeLayout user={user} usersList={usersList}/>} />
-					<Route path="/about" element={<About />} />
-					<Route path="/blog" element={<Blog />} />
-					<Route path="/service" element={<Service />} />
-					<Route path="/contact" element={<Contact />} />
+					<Route path="/" element={<HomeLayout user={user} usersList={usersList} pageName="Dashboard"/>} />
+					<Route path="/about" element={<About pageName="About" />} />
+					<Route path="/blog" element={<Blog pageName="Blog"/>} />
+					<Route path="/service" element={<Service pageName="Service"/>} />
+					<Route path="/contact" element={<Contact pageName="Contact"/>} />
 					<Route path="/user-profile" element={<UserAccount user={user}/>} />
 					<Route path="*" element={NotFound}/>
 				</Routes>

@@ -3,7 +3,7 @@ import React, { useEffect, useState, Suspense, lazy } from 'react'
 const ProductCard = lazy(() => import("../components/ProductCard"));
 
 
-const Blog = () => {
+const Blog = ({pageName}) => {
 
     const [products, setProducts] = useState([]);
 
@@ -29,7 +29,7 @@ const Blog = () => {
     return (
         <>
           
-          
+            <h1 className='fs-5 fw-semibold mb-3'>{pageName}</h1>
 
            
             <Suspense fallback={<p className='d-flex h-100 w-100 align-items-center bg-dark'>Loading Components...</p>}>

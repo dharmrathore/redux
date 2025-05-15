@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Contact = () => {
+const Contact = ({pageName}) => {
   return (
-    <div>
-      Contact
-    </div>
+    <h1 className='fs-5 fw-semibold mb-3'>
+      {pageName}
+    </h1>
   )
 }
 

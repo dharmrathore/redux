@@ -84,9 +84,9 @@ const InviteUserModal = ({showModal, setShowModal}) => {
     const searchInputRef = useRef(null);
     const dropdownRef = useRef(null);
     
-    // Filter users based on search term
+
     const filteredUsers = dummyUsers.filter(user => 
-        !selectedUsers.find(selected => selected.id === user.id) && // Don't show already selected users
+        !selectedUsers.find(selected => selected.id === user.id) && 
         (user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase()))
     );
@@ -118,10 +118,7 @@ const InviteUserModal = ({showModal, setShowModal}) => {
         if (selectedUsers.length > 0) {
             setIsLoading(true);
             try {
-                // Simulate API call
                 await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // Add to invited users list
                 const newInvites = selectedUsers.map(user => ({
                     ...user,
                     inviteStatus: 'pending',
@@ -130,18 +127,16 @@ const InviteUserModal = ({showModal, setShowModal}) => {
                 
                 setInvitedUsers(prev => [...prev, ...newInvites]);
                 console.log('Inviting users:', newInvites);
-                
-                // Clear selection and close modal
                 handleCloseModal();
-            } catch (error) {
+            } 
+            catch (error) {
                 console.error('Error inviting users:', error);
-            } finally {
+            } 
+            finally {
                 setIsLoading(false);
             }
         }
     };
-
-    // Handle clicks outside of dropdown
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (searchInputRef.current && !searchInputRef.current.contains(event.target) &&

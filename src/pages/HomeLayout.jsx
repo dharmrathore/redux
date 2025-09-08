@@ -45,7 +45,7 @@ const HomeLayout = ({ user }) => {
 
     return (
         <>  
-            <h1 className="fs-5 fw-semibold mb-3">Dashboard, {user?.name}</h1>
+            <h1 className="fs-5 fw-semibold mb-3 theme-text">Welcome to Dashboard {user?.name} !</h1>
 
             <PeopleInvite user={user} />
             <UserLoginTime user={user} />

@@ -42,13 +42,12 @@ const About = ({ pageName }) => {
     }
 
     const handleTableFilter = (event)=>{
-        const filterValue = event.target.value.toLowerCase();
+        const filterValue = event.target.value.toLowerCase().trim();
         setsearchTerm(filterValue);
         console.log('setsearchTerm  value:', filterValue);
 
         const filteredData = userData.filter(user =>
-            user.username.toLowerCase().includes(filterValue) ||
-            user.email.toLowerCase().includes(filterValue)
+            user.username.toLowerCase().includes(filterValue) || user.email.toLowerCase().includes(filterValue) || user.name.toLowerCase().includes(filterValue)
         ) 
         setUserFiltered(filteredData);
     }
@@ -59,11 +58,11 @@ const About = ({ pageName }) => {
             <h1 className='fs-5 fw-semibold mb-3'>{pageName}</h1>
             <div className='d-flex align-items-center gap-3 mb-3 w-100 justify-content-between'>
                 <div className='table-fillter'>
-                    <input type="text" value={searchTerm}  placeholder="Search by name or email" className='form-control' onChange={handleTableFilter} />
+                    <input type="text" value={searchTerm}  placeholder="Search by name or email" className='form-control rounded-3' onChange={handleTableFilter} />
                 </div>
                 <div className='d-flex align-items-center gap-2'>
                     <h3 style={{ color: `${color}` }}>{time}</h3>
-                    <select defaultValue="green" onChange={colorHandle} className='border p-2'>
+                    <select defaultValue="green" onChange={colorHandle} className='border p-2 rounded-3'>
                         <option value="red">Red</option>
                         <option value="blue">blue</option>
                         <option value="yellow">yellow</option>

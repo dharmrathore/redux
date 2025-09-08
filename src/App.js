@@ -23,6 +23,7 @@ import Navbar from './components/Navbar';
 import NotFound from './pages/NotFound';
 import Service from './pages/Service';
 import UserAccount from './pages/UserAccount';
+import ThemeChange from './components/ThemeChange';
 
 // import {addToCard} from './redux/actions/productActions';
 
@@ -31,7 +32,8 @@ function AppLayout(){
 	const dispatch = useDispatch();
 	const {isAuthenticated, user} = useSelector(state => state.auth);
 	const cartItems = useSelector(state => state.product.cardData);
-	const usersList = useSelector(state => state.auth.usersList)
+	const usersList = useSelector(state => state.auth.usersList);
+	// const { theme } = useSelector(state => state.theme);
 
 	//console.log('--------', usersList)
 //console.log(cartItems,"=-09876543234567890-=");
@@ -52,10 +54,18 @@ function AppLayout(){
 		loginIn()
 	}, [loginIn])
 
+	// Apply theme to document
+	// useEffect(() => {
+	// 	document.documentElement.setAttribute('data-theme', theme);
+	// }, [theme]);
+
 
 	if (!isAuthenticated) {
 		return (
 			<div className='d-flex  h-100  align-items-center justify-content-center login-grid'>
+				<div className="position-absolute top-0 end-0 p-3">
+					<ThemeChange />
+				</div>
 				<Login />
 			</div>
 		)
@@ -70,8 +80,9 @@ function AppLayout(){
 
 	return (
         <>
-			<header className="d-flex w-100 p-3 py-2 bg-light shadow-sm">
+			<header className="d-flex w-100 p-3 py-2 bg-light shadow-sm justify-content-between align-items-center">
 				<Header logout={() => dispatch(logout())} cartCount={cartItems.length}  user={user}/>
+				<ThemeChange />
 			</header>
 			<nav className='bg-light'>
 				<Navbar/>
